@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>Claude 1日 補講 運営マニュアル（FC向け）｜入口</title>
+<title>Claude 1日 補講（FC向け）｜入口</title>
 <style>
 :root{
   --ink:#1a2230; --sub:#475066; --line:#e3e7ef;
   --bg:#ffffff; --bg-soft:#f6f8fb; --paper:#fff;
   --accent:#1f5fbf; --accent-deep:#163f7d; --accent-soft:rgba(31,95,191,.08);
-  --ok:#0f9d7a; --warn:#c9492f;
+  --ok:#0f9d7a; --warn:#c9492f; --coral:#c8633e;
   --radius:16px; --radius-sm:12px; --pill:999px;
   --shadow:0 8px 30px rgba(22,40,70,.08);
   --shadow-sm:0 3px 12px rgba(22,40,70,.06);
-  --maxw:880px;
+  --maxw:960px;
   --font:"Hiragino Sans","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",Meiryo,sans-serif;
 }
 *{box-sizing:border-box;}
@@ -26,32 +26,31 @@ h1{font-size:clamp(28px,5vw,40px);}
 .toolbar{position:sticky; top:0; z-index:50; display:flex; gap:10px; align-items:center; padding:10px 16px; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
 .toolbar .t{font-weight:700; font-size:14px; color:var(--sub);}
 .eyebrow{display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; color:var(--accent); background:var(--accent-soft); padding:6px 14px; border-radius:var(--pill); margin-bottom:18px;}
-.hero{padding:64px 0 20px; background:linear-gradient(180deg,#f4f8fe 0%,#fff 100%);}
-.hero .sub{color:var(--sub); font-size:18px; margin-top:20px; max-width:660px;}
-.pick{display:grid; grid-template-columns:1fr 1fr; gap:22px; padding:30px 0 10px;}
-@media(max-width:680px){ .pick{grid-template-columns:1fr;} }
-.mcard{display:block; text-decoration:none; color:inherit; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:30px 28px; box-shadow:var(--shadow-sm); transition:transform .15s, box-shadow .2s, border-color .2s;}
+.hero{padding:60px 0 14px; background:linear-gradient(180deg,#f4f8fe 0%,#fff 100%);}
+.hero .sub{color:var(--sub); font-size:18px; margin-top:20px; max-width:680px;}
+.pick{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:28px 0 10px;}
+.mcard{display:flex; flex-direction:column; text-decoration:none; color:inherit; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; box-shadow:var(--shadow-sm); transition:transform .15s, box-shadow .2s, border-color .2s;}
 .mcard:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:var(--accent);}
-.mcard .tag{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.08em; padding:5px 14px; border-radius:var(--pill); background:var(--accent); color:#fff;}
+.mcard .tag{display:inline-block; align-self:flex-start; font-size:12px; font-weight:700; letter-spacing:.06em; padding:5px 14px; border-radius:var(--pill); background:var(--accent); color:#fff;}
 .mcard .tag.green{background:var(--ok);}
+.mcard .tag.coral{background:var(--coral);}
 .mcard .tag.dark{background:var(--ink);}
-.mcard h2{font-size:22px; margin:16px 0 10px;}
-.mcard p{color:var(--sub); font-size:14.5px; margin:0;}
-.mcard ul{margin:14px 0 0; padding-left:18px; color:var(--sub); font-size:14px;}
-.mcard ul li{margin:4px 0;}
-.mcard .go{display:inline-flex; align-items:center; gap:6px; margin-top:18px; font-weight:700; color:var(--accent);}
-.note{font-size:14px; color:var(--sub); background:var(--bg-soft); border-radius:var(--radius-sm); padding:14px 18px; margin:24px 0; border-left:4px solid var(--accent);}
+.mcard h2{font-size:20px; margin:14px 0 10px;}
+.mcard p{color:var(--sub); font-size:14px; margin:0; flex:1;}
+.mcard .who{font-size:12.5px; font-weight:700; color:var(--ink); background:var(--bg-soft); border-radius:8px; padding:7px 12px; margin-top:14px;}
+.mcard .go{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-weight:700; color:var(--accent);}
+.note{font-size:14px; color:var(--sub); background:var(--bg-soft); border-radius:var(--radius-sm); padding:14px 18px; margin:22px 0; border-left:4px solid var(--accent);}
 footer.doc{margin-top:30px; padding:26px 0 56px; text-align:center; font-size:12px; color:var(--sub); border-top:1px solid var(--line);}
 </style>
 </head>
 <body>
 
-<div class="toolbar"><span class="t">🧭 Claude 1日 補講 運営マニュアル（FC向け）</span></div>
+<div class="toolbar"><span class="t">🧭 Claude 1日 補講（FC向け）</span></div>
 
 <section class="hero"><div class="wrap">
   <span class="eyebrow">ホリエモンAI学校 ・ FC運営パートナー向け</span>
   <h1>FCの担当者だけで、<br>同じ補講を開くために。</h1>
-  <p class="sub">「どの動画を流すか・何を話すか・受講者に何をしてもらうか・つまずいたらどう助けるか」を、9:00〜18:00の時間どおりに並べた運営マニュアルです。下の2つからどうぞ。</p>
+  <p class="sub">運営する側（FC校の担当者）と、受けるお客さま（受講者）では、知りたいことが違います。それぞれに向けた資料を用意しました。下から選んでください。</p>
 </div></section>
 
 <section><div class="wrap">
@@ -59,32 +58,31 @@ footer.doc{margin-top:30px; padding:26px 0 56px; text-align:center; font-size:12
     <a class="mcard" href="1day.html">
       <span class="tag green">運営マニュアル</span>
       <h2>Claude 1日 補講 運営マニュアル</h2>
-      <p>9:00〜18:00の進行台本。各コマに「流す動画 → 説明 → 受講者にやってもらうこと → サポートのコツ」＋動画リンクを紐づけています。</p>
-      <ul>
-        <li>午前 Cowork編 / 午後 Code編</li>
-        <li>全員そろえる山場は2か所</li>
-        <li>受講者からのよくある質問つき</li>
-      </ul>
+      <p>9:00〜18:00の進行台本。各コマで「流す動画／話すこと／受講者にやってもらうこと／サポートのコツ」が分かります。山場の越えさせ方・撤退ライン・担当者FAQつき。</p>
+      <div class="who">👩‍🏫 FC校の運営担当者が見る</div>
+      <span class="go">開く →</span>
+    </a>
+    <a class="mcard" href="join.html">
+      <span class="tag coral">受講者向けガイド</span>
+      <h2>Claude 1日 補講 ご案内</h2>
+      <p>当日の流れと心得を、受講者の目線でやさしくまとめた1枚。「今日やること」「困ったときの3ステップ」「持ち物」が分かります。</p>
+      <div class="who">🌱 お客さま（受講者）にお渡しする</div>
       <span class="go">開く →</span>
     </a>
     <a class="mcard" href="setup-guide.html">
-      <span class="tag dark">共通ガイド</span>
-      <h2>セットアップ完全ガイド</h2>
-      <p>Code編の山場「git ／ VSCode ／ Claude Code」の入れ方を、画面の図解つきで1ステップずつ。「この通りやればOK」の保険資料です。</p>
-      <ul>
-        <li>Mac ／ Windows 切替つき</li>
-        <li>打つ文字はそのままコピー可</li>
-        <li>確認ダイアログ・ボタンも図で再現</li>
-      </ul>
+      <span class="tag dark">セットアップ完全ガイド</span>
+      <h2>道具の入れ方（画面の図解つき）</h2>
+      <p>Claudeアプリ・git・VSCode・Claude Code の入れ方を、画面の絵つきで1ステップずつ。Mac／Windows切替・コマンドはコピー可。</p>
+      <div class="who">🧰 当日みんなで使う（運営・受講者 共通）</div>
       <span class="go">開く →</span>
     </a>
   </div>
 
-  <div class="note">📌 教材の動画リンクは、運営マニュアルの各コマに紐づけてあります。検索に出ない限定URLなので、共有先だけにお渡しください。</div>
+  <div class="note">📌 使い分け：<b>運営担当者は「運営マニュアル」</b>、<b>受講者には「受講者向けガイド」</b>をお渡しください。「セットアップ完全ガイド」は当日の道具の入れ方で、両方から開けます。検索に出ない限定URLなので、共有先だけにお渡しください。</div>
 </div></section>
 
 <footer class="doc">
-  Claude 1日 補講 運営マニュアル（FC向け） ・ ホリエモンAI学校 ・ 関係者限定 ／ 各ページの「印刷 / PDF保存」でそのまま配布できます
+  Claude 1日 補講（FC向け） ・ ホリエモンAI学校 ・ 関係者限定 ／ 各ページの「印刷 / PDF保存」でそのまま配布できます
 </footer>
 
 </body>

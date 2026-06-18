@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Claude 1日 補講 ご案内（受講者向け）</title>
+<style>
+:root{
+  --ink:#2b2118; --sub:#7a6a58; --line:#ece3d8;
+  --bg:#faf6f0; --bg-soft:#f3eee7; --paper:#fff;
+  --accent:#c8633e; --accent-deep:#a94f2e; --accent-soft:#fbeee6;
+  --ok:#5a8a5a; --warn:#b07d2b; --gold:#b07d2b;
+  --c-learn:#b07d2b;  --c-learn-soft:#f8f0df;
+  --c-cowork:#5a8a5a; --c-cowork-soft:#ecf5ec;
+  --c-code:#3b6ea5;   --c-code-soft:#e9f1f9;
+  --c-rest:#8a7f9a;   --c-rest-soft:#f1eef6;
+  --radius:14px; --radius-sm:8px; --pill:999px;
+  --shadow:0 8px 30px rgba(43,33,24,.06);
+  --shadow-sm:0 4px 16px rgba(43,33,24,.05);
+  --maxw:820px;
+  --font:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+}
+body{line-height:1.7;}
+.hero{background:linear-gradient(180deg,#fbf5ec 0%,var(--bg) 100%);}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); -webkit-font-smoothing:antialiased; font-size:16px;}
+a{color:var(--accent);}
+img{max-width:100%; display:block;}
+h1,h2,h3,h4{line-height:1.4; margin:0; font-weight:700; letter-spacing:.01em;}
+h1{font-size:clamp(28px,5vw,42px); line-height:1.28;}
+h2{font-size:clamp(22px,3.4vw,30px);}
+h3{font-size:18px;}
+p{margin:0;}
+.lead{color:var(--sub); font-size:17px; max-width:720px;}
+.center{text-align:center;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px;}
+.section{padding:56px 0;}
+.section-soft{background:var(--bg-soft);}
+.toolbar{position:sticky; top:0; z-index:50; display:flex; gap:10px; align-items:center; padding:10px 16px; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.toolbar .t{font-weight:700; font-size:14px; color:var(--sub); margin-right:auto;}
+.toolbar button{font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:7px 14px; border-radius:var(--radius-sm);}
+.toolbar button.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.eyebrow{display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; color:var(--accent); background:var(--accent-soft); padding:6px 14px; border-radius:var(--pill); margin-bottom:18px;}
+.chip{display:inline-block; font-size:12px; font-weight:700; padding:4px 12px; border-radius:var(--pill); white-space:nowrap;}
+.chip.learn{background:var(--c-learn-soft); color:var(--c-learn);}
+.chip.cowork{background:var(--c-cowork-soft); color:var(--c-cowork);}
+.chip.code{background:var(--c-code-soft); color:var(--c-code);}
+.chip.rest{background:var(--c-rest-soft); color:var(--c-rest);}
+.chip.must{background:var(--accent); color:#fff;}
+.chip-row{display:flex; gap:8px; flex-wrap:wrap;}
+.card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:24px 22px; box-shadow:var(--shadow-sm);}
+.card.lead-bar{border-left:5px solid var(--accent);}
+.card .ic{font-size:26px;}
+.card h3{font-size:17px; margin:10px 0 8px;}
+.card p{color:var(--sub); font-size:14.5px;}
+.card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:30px;}
+.sec-head{max-width:720px; margin:0 auto 8px;}
+.sec-head.center{text-align:center; margin-left:auto; margin-right:auto;}
+.sec-head h2{margin-bottom:12px;}
+.hero{padding:66px 0 56px; border-bottom:1px solid var(--line);}
+.hero h1 .hl{color:var(--accent);}
+.hero .sub{color:var(--sub); font-size:clamp(16px,2vw,18px); margin-top:22px; max-width:680px;}
+.hero-badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+.hbadge{background:var(--paper); border:1px solid var(--line); border-radius:var(--pill); padding:8px 16px; font-size:13.5px; font-weight:600; color:var(--sub); box-shadow:var(--shadow-sm);}
+.hbadge b{color:var(--ink);}
+.timeline{position:relative; margin-top:18px; padding-left:96px;}
+.timeline::before{content:""; position:absolute; left:78px; top:8px; bottom:8px; width:2px; background:var(--line);}
+.slot{position:relative; margin-bottom:16px;}
+.slot .time{position:absolute; left:-96px; top:16px; width:74px; text-align:right; font-size:12.5px; font-weight:700; color:var(--sub); line-height:1.35;}
+.slot .dot{position:absolute; left:-22px; top:20px; width:14px; height:14px; border-radius:50%; background:var(--paper); border:3px solid var(--accent); z-index:1;}
+.slot .card{border-left:5px solid var(--accent); padding:18px 20px;}
+.slot .card h3{margin:0 0 8px; font-size:16px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+.slot .card p{margin:5px 0 0; font-size:14px; color:var(--sub);}
+.slot .card p b{color:var(--ink); font-weight:700;}
+.slot .card p a{font-weight:700;}
+.slot.code .dot{border-color:var(--c-code);}   .slot.code .card{border-left-color:var(--c-code);}
+.slot.cowork .dot{border-color:var(--c-cowork);} .slot.cowork .card{border-left-color:var(--c-cowork);}
+.slot.rest .dot{border-color:var(--c-rest);}    .slot.rest .card{border-left-color:var(--c-rest); background:var(--bg-soft); box-shadow:none;}
+.slot.must .dot{border-color:var(--accent); width:18px; height:18px; left:-24px; top:18px;}
+.slot.must .card{border-left:5px solid var(--accent); background:var(--accent-soft);}
+.note{font-size:13.5px; color:var(--sub); background:var(--bg-soft); border-radius:var(--radius-sm); padding:12px 16px; margin:14px 0;}
+.note.tip{border-left:4px solid var(--accent); background:var(--accent-soft);}
+.bigtip{background:var(--accent-soft); border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line)); border-radius:var(--radius); padding:26px 26px; margin-top:18px;}
+.bigtip h3{color:var(--accent-deep); font-size:19px; margin:0 0 14px;}
+.bigtip ol{margin:0; padding-left:22px; color:var(--ink);}
+.bigtip ol li{margin:7px 0; font-size:15.5px;}
+.bigtip ol li b{color:var(--accent-deep);}
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:30px;}
+.step{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px; box-shadow:var(--shadow-sm); position:relative;}
+.step .sno{width:34px; height:34px; border-radius:10px; background:var(--accent); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:15px;}
+.step h4{font-size:15.5px; margin:12px 0 8px;}
+.step p{font-size:13.5px; color:var(--sub);}
+.cta{display:inline-block; background:var(--accent); color:#fff; font-weight:700; text-decoration:none; padding:14px 30px; border-radius:var(--pill); box-shadow:0 8px 22px var(--accent-soft); margin-top:8px;}
+.faq{max-width:780px; margin:30px auto 0;}
+.qa{background:var(--paper); border:1px solid var(--line); border-radius:14px; margin-bottom:14px; overflow:hidden; box-shadow:var(--shadow-sm);}
+.qa summary{cursor:pointer; list-style:none; padding:18px 22px; font-weight:700; font-size:15.5px; display:flex; justify-content:space-between; align-items:center; gap:16px;}
+.qa summary::-webkit-details-marker{display:none;}
+.qa summary .qmark{color:var(--accent); font-weight:800; margin-right:10px;}
+.qa summary .chev{color:var(--accent); transition:transform .2s; flex:0 0 auto; font-size:14px;}
+.qa[open] summary .chev{transform:rotate(180deg);}
+.qa .ans{padding:0 22px 20px 48px; color:var(--sub); font-size:14.5px;}
+.footer-cta{background:linear-gradient(135deg,var(--accent-deep),var(--accent)); color:#fff; text-align:center; padding:60px 0;}
+.footer-cta h2,.footer-cta p{color:#fff;}
+.footer-cta p{opacity:.92; margin-top:14px; font-size:16px; max-width:560px; margin-left:auto; margin-right:auto;}
+footer.doc{margin-top:0; padding:28px 0 56px; text-align:center; font-size:12px; color:var(--sub);}
+@media print{
+  body{background:#fff;}
+  .toolbar{display:none;}
+  .wrap{margin:0; max-width:none;}
+  .card,.step,.qa{box-shadow:none !important;}
+  .section{padding:20px 0;}
+  .card,.slot,.step,.qa{break-inside:avoid;}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px;}
+  .timeline{padding-left:60px;} .timeline::before{left:46px;}
+  .slot .time{left:-60px; width:44px; font-size:11px;} .slot .dot{left:-18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="t">🌱 Claude 1日 補講 ご案内（受講者向け）</span>
+  <button onclick="window.print()" class="primary">🖨 印刷 / PDF保存</button>
+</div>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">受講されるみなさまへ</span>
+  <h1>今日1日で、AIに<br><span class="hl">あなたの仕事</span>を手伝ってもらう。</h1>
+  <p class="sub">むずかしい知識はいりません。短い動画を見て、同じことをご自分の手で試すだけ。終わるころには「これ、明日から使える」が1つ、手元に残ります。このページに、今日の流れと心得をまとめました。</p>
+  <div class="hero-badges">
+    <div class="hbadge">🕘 <b>9:00〜18:00</b> の1日</div>
+    <div class="hbadge">🎬 短い動画を<b>16本</b></div>
+    <div class="hbadge">✋ 見るだけでなく<b>手を動かす</b></div>
+  </div>
+</div></section>
+
+<!-- 今日のゴール -->
+<section class="section"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">今日のゴール</span>
+    <h2>持ち帰ってほしいのは、この2つ</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card lead-bar"><div class="ic">💡</div><h3>① 「使えそう」と思える</h3><p>Claudeを使えば、普段の仕事をラクにできそう——そう感じてもらえたら大成功です。</p></div>
+    <div class="card lead-bar"><div class="ic">🛠</div><h3>② 効率化を1つ完成させる</h3><p>明日からすぐ使える効率化を、最低1つ、今日この場で完成させて持ち帰りましょう。</p></div>
+  </div>
+  <div class="note tip" style="margin-top:24px;">🌟 <b>全部できなくて大丈夫です。</b>16本ぜんぶ進まなくても、「1つできた」が残れば、今日は大成功。気負わずいきましょう。</div>
+</div></section>
+
+<!-- 持ち物 -->
+<section class="section section-soft"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">持ち物・準備</span>
+    <h2>当日までに、これだけ用意してください</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="sno">1</div><h4>ノートパソコン</h4><p>Mac か Windows、どちらでもOK。<b>充電器も忘れずに</b>。一日使います。</p></div>
+    <div class="step"><div class="sno">2</div><h4>Googleアカウント</h4><p>ログインできる状態にしておいてください（メールアドレスとパスワードが分かればOK）。</p></div>
+    <div class="step"><div class="sno">3</div><h4>視聴用アカウント</h4><p>動画を見るためのアカウントは、<b>当日ご案内します</b>。事前の準備はいりません。</p></div>
+  </div>
+  <div class="note">💡 会社から借りているパソコンの場合、当日いくつかアプリを「インストール」します。会社のルールでインストールできないことがあるので、心配な方は事前に会社の担当者へご確認ください。</div>
+</div></section>
+
+<!-- 困ったときの合言葉 -->
+<section class="section"><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">これだけ覚えておけば安心</span>
+    <h2>困ったら、まず自分のClaudeに聞く</h2>
+    <p class="lead">今日いちばん大事な合言葉です。分からないことがあっても、あわてなくて大丈夫。</p>
+  </div>
+  <div class="bigtip">
+    <h3>🔑 つまずいたときの3ステップ</h3>
+    <ol>
+      <li><b>メモに書く</b> … 「何が分からないか」をひとことメモ。</li>
+      <li><b>自分のClaudeに聞く</b> … 「これは何？」「どうすればいい？」とそのまま聞いてみる。英語の画面が出てきたら、写真に撮って見せればOK。</li>
+      <li><b>それでも分からなければ手を挙げる</b> … スタッフが順番に回ります。遠慮なくどうぞ。</li>
+    </ol>
+  </div>
+  <div class="card-grid" style="margin-top:18px;">
+    <div class="card"><div class="ic">✅</div><h3>「警告」が出ても大丈夫</h3><p>操作中に確認や警告が出たら、基本は「承認」「OK」で進めて大丈夫です。不安なら聞いてください。</p></div>
+    <div class="card"><div class="ic">📷</div><h3>英語が出たら写真で</h3><p>英語の画面で固まったら、スマホで撮ってClaudeに見せて「これ何？」と聞けば、日本語で教えてくれます。</p></div>
+    <div class="card"><div class="ic">🐢</div><h3>ゆっくりで大丈夫</h3><p>早い人に合わせなくてOK。自分のペースで。難しい2か所だけ、みんなで一緒に進みます。</p></div>
+  </div>
+</div></section>
+
+<!-- セットアップ導線 -->
+<section class="section section-soft"><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">最初にやること</span>
+    <h2>パソコンに「道具」を入れます</h2>
+    <p class="lead">午前のはじめと午後のはじめに、アプリや道具を入れる時間があります。画面の絵つきで、この通りに進めれば必ず終わる手引きを用意しました。</p>
+  </div>
+  <div class="center"><a class="cta" href="setup-guide.html">🧰 セットアップ完全ガイドを開く</a></div>
+  <div class="note tip" style="margin-top:20px;">💡 入れるのは「Claudeのアプリ」「git」「VSCode」「Claude Code」。名前はむずかしそうですが、ガイドの通りクリックしていくだけです。詰まってもスタッフが一緒に進めます。</div>
+</div></section>
+
+<!-- 午前の流れ -->
+<section class="section"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">今日の流れ ・ 午前</span>
+    <h2>午前：Cowork編（9:00〜12:00）</h2>
+    <p class="lead">「画面を見て一緒に作業してくれるClaude」で、毎日の仕事をラクにしていきます。各回、動画を見て、すぐご自分でも試してみましょう。</p>
+  </div>
+  <div class="timeline">
+
+    <div class="slot"><div class="time">9:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>開会・自己紹介 <span class="chip learn">はじめに</span></h3>
+        <p>お名前・お仕事・「AIにやってほしいこと」を一言ずつ。今日の流れと合言葉を確認します。</p>
+      </div></div>
+
+    <div class="slot must cowork"><div class="time">9:00<br>–9:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.1 <span class="chip must">みんなで一緒に</span></h3>
+        <p><b>動画を見る</b>：インストール・画面操作　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/9e8fca93-60ec-4280-a3ed-6bfb7a050fe7" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：Claudeのアプリを入れて、最初の指示を1つ出してみる。ここはみんなで一緒に進むので、置いていかれません。</p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">9:30<br>–10:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.2 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：フォルダ整理 〜 経費精算　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/1df1d92f-1873-45c4-b005-ee3b8bc729c7" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：ちらかったファイルを整理／領収書を読み取って、経費精算に自動入力。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/easy-keihi/" target="_blank" rel="noopener">経費の練習サイト</a>／<a href="https://imai-design.github.io/claude-2day-camp/receipts/receipts-sample.zip" target="_blank" rel="noopener">領収書サンプル</a></p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">10:00<br>–10:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.3 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：メール送信 ＆ 日程調整　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/0e20155d-1eb5-47aa-8ad6-2bad6ddfce92" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：メール返信の下書きを作る／予定をカレンダーに登録。送るかどうかは自分で決められます。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/mock-mail/" target="_blank" rel="noopener">メール練習サイト</a></p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">10:30<br>–11:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.4 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：商談＆セミナーの事前準備　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/7fa0e9ff-63b2-4f8e-86ef-fd44dbcadd23" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：会う相手のことを下調べ／当日の資料や段取りを準備してもらう。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/mock-mail/" target="_blank" rel="noopener">メール練習サイト</a>／<a href="https://imai-design.github.io/claude-2day-camp/cards/meishi-sample.zip" target="_blank" rel="noopener">名刺サンプル</a></p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">11:00<br>–11:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.5 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：口コミ返信を任せよう　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/b78e784e-8921-49db-a363-b0600dab8d73" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：お店やサービスへの口コミに、感じのよい返信文を作ってもらう。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/google-reviews-seitai/" target="_blank" rel="noopener">口コミ練習サイト</a></p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">11:30<br>–12:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.6 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：マニュアルを「使えるAIスキル」へ　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/f349dbfa-beb9-46ba-a1c3-28537b03ef67" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：手元のマニュアルをAIに覚えさせて、いつでも呼び出せるようにする。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/claude-2day-camp/manuals/it-support-manual.pdf" target="_blank" rel="noopener">ITマニュアル(PDF)</a>／<a href="https://imai-design.github.io/claude-2day-camp/data/monitoring-summary-2026-05.csv" target="_blank" rel="noopener">監視データ(CSV)</a></p>
+      </div></div>
+
+    <div class="slot rest"><div class="time">12:00<br>–13:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>お昼休み <span class="chip rest">60分</span></h3>
+        <p>午後はホームページ作りなど、もう一歩進んだことに挑戦します。ゆっくり休んでください。</p>
+      </div></div>
+
+  </div>
+</div></section>
+
+<!-- 午後の流れ -->
+<section class="section section-soft"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">今日の流れ ・ 午後</span>
+    <h2>午後：Cowork編の続き ＋ Code編（13:00〜18:00）</h2>
+    <p class="lead">午後は「ファイルやプログラムを動かしてくれるClaude」で、ホームページ作りから一歩進んだ使い方まで。むずかしいのは最初の1か所だけです。</p>
+  </div>
+  <div class="timeline">
+
+    <div class="slot cowork"><div class="time">13:00<br>–13:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.7 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：自分専用の新聞をつくる　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/0e9951c3-9f35-45b3-8f6d-d751bce8747a" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：興味のある分野の情報を、毎回まとめてくれる仕組みを作る。</p>
+        <p><b>練習に使える</b>：<a href="https://imai-design.github.io/claude-2day-camp/news-sources.html" target="_blank" rel="noopener">新聞づくりガイド</a></p>
+      </div></div>
+
+    <div class="slot cowork"><div class="time">13:30<br>–14:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Cowork Vol.8 <span class="chip cowork">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：プロジェクトをまるごと任せる　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6b0333ec-f186-4a1a-b7d4-0e827794d805/bc6ded23-fc3a-4ac0-90d3-1c6d76a9296a" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：いくつかの作業をまとめて任せる流れを体験。Cowork編の仕上げです。</p>
+      </div></div>
+
+    <div class="slot must code"><div class="time">14:00<br>–14:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.1 <span class="chip must">みんなで一緒に</span></h3>
+        <p><b>動画を見る</b>：アプリ版とVSCode　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/c14b9deb-f237-4ad1-a3fe-d39292bee85d" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：「git」「VSCode」「Claude Code」という道具を入れます。今日いちばんの山場ですが、<b>みんなで一緒に</b>進むので大丈夫。詰まったら<a href="setup-guide.html">セットアップ完全ガイド</a>とスタッフが助けます。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">14:30<br>–15:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.2 <span class="chip code">今日の見せ場</span></h3>
+        <p><b>動画を見る</b>：対話だけでホームページを作る　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/e2010798-db30-419a-8a4a-74407f4736f9" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：自分のホームページを作って、インターネットに公開！　URLが手に入ります。今日いちばん「おお！」となるところ。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">15:00<br>–15:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.3 <span class="chip code">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：必要な道具を入れる　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/d075276b-8ccf-41d0-bc26-fcbe90f801ba" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：「○○を入れて」と頼むだけで、好きな道具を入れてみる（例：メモアプリ）。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">15:30<br>–16:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.4 <span class="chip code">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：自分用の道具をつくる　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/a375ee91-6087-4520-8f8e-f7023652f71c" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：自分の仕事に合う道具を作ってみる。頼み方はざっくりで大丈夫。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">16:00<br>–16:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.5 <span class="chip code">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：別の道具を動かす（Canva・Adobe）　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/d4bcf5b2-401d-4cd4-96b8-4506a9c1df64" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：画像を作ったり、印刷に使える形に変換したり。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">16:30<br>–17:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.6 <span class="chip code">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：別のAIを動かす（Gemini・Codex）　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/39c3e5cc-a34f-4347-bc28-3030887666e2" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：調べものと作業を別のAIに分けて、かしこく使い分ける。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">17:00<br>–17:30</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.7 <span class="chip code">見て・やってみる</span></h3>
+        <p><b>動画を見る</b>：AIに記憶を持たせる　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/video/74e4a0b7-4fa6-421b-9f84-6f7ba8dc65ac" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：AIに「覚えておいて」と記憶させて、次に開いたときも続きから使えるようにする。</p>
+      </div></div>
+
+    <div class="slot code"><div class="time">17:30<br>–18:00</div><div class="dot"></div>
+      <div class="card lead-bar"><h3>Code Vol.8 ＋ まとめ <span class="chip code">しめくくり</span></h3>
+        <p><b>動画を見る</b>：AIで組織のように動かす　<a href="https://one-stream.io/user/CwGemEM3sSOZX6f5uhBm0jUJUs93/playlist/6256c1e4-d363-4134-bfc4-a444eb13a234/63643a9e-44cf-4e9e-aaf7-9d3b5c6c6ba9" target="_blank" rel="noopener">▶ 開く</a></p>
+        <p><b>やってみよう</b>：いちばん発展した使い方を体験。最後に「明日から、自分の仕事でどれを使うか」を一つ決めて、今日のしめくくりに。</p>
+      </div></div>
+
+  </div>
+</div></section>
+
+<!-- よくある質問 -->
+<section class="section"><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">よくある質問</span>
+    <h2>気になることに、お答えします</h2>
+  </div>
+  <div class="faq">
+    <details class="qa" open>
+      <summary><span><span class="qmark">Q.</span>パソコンが苦手でも、ついていけますか？</span><span class="chev">▼</span></summary>
+      <div class="ans">大丈夫です。動画を見て、同じことを自分の手でやるだけ。分からなくなったら、画面のClaudeにそのまま聞けます。スタッフもそばにいます。</div>
+    </details>
+    <details class="qa">
+      <summary><span><span class="qmark">Q.</span>英語の画面が出てきたら？</span><span class="chev">▼</span></summary>
+      <div class="ans">スマホで写真に撮って、Claudeに見せて「これは何？どうすればいい？」と聞けばOK。日本語で教えてくれます。</div>
+    </details>
+    <details class="qa">
+      <summary><span><span class="qmark">Q.</span>16本もあって、最後まで終わりますか？</span><span class="chev">▼</span></summary>
+      <div class="ans">早い人は先へ、ゆっくりの人はゆっくりで大丈夫。全部終わらなくても、「明日から使える効率化を1つ」持ち帰れれば大成功です。</div>
+    </details>
+    <details class="qa">
+      <summary><span><span class="qmark">Q.</span>途中で分からなくなったら？</span><span class="chev">▼</span></summary>
+      <div class="ans">①メモに書く → ②自分のClaudeに聞く → ③それでも分からなければ手を挙げる。この順番で。遠慮はいりません。</div>
+    </details>
+  </div>
+</div></section>
+
+<!-- 締め -->
+<section class="footer-cta"><div class="wrap">
+  <h2>気負わず、楽しんでいきましょう 🌱</h2>
+  <p>「できた！」をひとつ持ち帰ることが、今日のいちばんの目標です。分からないことは、まず自分のClaudeに。</p>
+</div></section>
+
+<footer class="doc">
+  Claude 1日 補講 ご案内（受講者向け） ・ ホリエモンAI学校　／　<a href="setup-guide.html">セットアップ完全ガイド</a>
+</footer>
+
+<script>
+document.querySelectorAll('.qa').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    if(d.open) document.querySelectorAll('.qa').forEach(function(o){ if(o!==d) o.open=false; });
+  });
+});
+</script>
+
+</body>
+</html>
