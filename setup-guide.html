@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>セットアップ完全ガイド｜git・VSCode・Claude Code（この通りやればOK）</title>
+<style>
+:root{
+  --ink:#1a2230; --sub:#475066; --line:#e3e7ef;
+  --bg:#ffffff; --bg-soft:#f6f8fb; --paper:#fff;
+  --accent:#1f5fbf; --accent-deep:#163f7d; --accent-soft:rgba(31,95,191,.08);
+  --ok:#0f9d7a; --warn:#c9492f;
+  --radius:16px; --radius-sm:12px; --pill:999px;
+  --shadow:0 8px 30px rgba(22,40,70,.08);
+  --shadow-sm:0 3px 12px rgba(22,40,70,.06);
+  --maxw:820px;
+  --font:"Hiragino Sans","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,"Segoe UI","Yu Gothic",Meiryo,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font); line-height:1.8; -webkit-font-smoothing:antialiased; font-size:16px;}
+a{color:var(--accent);}
+h1,h2,h3,h4{line-height:1.36; margin:0; font-weight:700;}
+h1{font-size:clamp(26px,5vw,38px);}
+h2{font-size:clamp(20px,3.4vw,27px);}
+p{margin:0;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px;}
+.section{padding:46px 0;}
+.section-soft{background:var(--bg-soft);}
+.lead{color:var(--sub); font-size:16.5px;}
+.toolbar{position:sticky; top:0; z-index:50; display:flex; gap:10px; align-items:center; padding:10px 16px; background:color-mix(in srgb,var(--bg) 92%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.toolbar .t{font-weight:700; font-size:14px; color:var(--sub); margin-right:auto;}
+.toolbar a.home{font-size:13px; font-weight:600; color:var(--sub); text-decoration:none; border:1px solid var(--line); padding:7px 14px; border-radius:var(--radius-sm);}
+.toolbar a.home:hover{border-color:var(--accent); color:var(--accent);}
+.toolbar button{font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:7px 14px; border-radius:var(--radius-sm);}
+.toolbar button.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+.eyebrow{display:inline-block; font-size:13px; font-weight:700; letter-spacing:.12em; color:var(--accent); background:var(--accent-soft); padding:6px 14px; border-radius:var(--pill); margin-bottom:16px;}
+.hero{padding:58px 0 36px; background:linear-gradient(180deg,#f4f8fe 0%,#fff 100%); border-bottom:1px solid var(--line);}
+.hero .sub{color:var(--sub); font-size:17px; margin-top:18px; max-width:640px;}
+.partbar{display:flex; align-items:center; gap:14px; margin:6px 0 8px; padding:16px 22px; background:linear-gradient(135deg,var(--accent-deep),var(--accent)); color:#fff; border-radius:var(--radius);}
+.partbar .pn{font-size:13px; font-weight:700; letter-spacing:.1em; opacity:.9;}
+.partbar h2{color:#fff; font-size:22px;}
+.partbar .ic{font-size:30px;}
+
+/* OS切替 */
+.osswitch{display:inline-flex; gap:0; border:1.5px solid var(--accent); border-radius:var(--pill); overflow:hidden; margin:6px 0 4px;}
+.osswitch button{font:inherit; font-weight:700; font-size:14.5px; cursor:pointer; border:0; background:#fff; color:var(--accent); padding:10px 26px; transition:.15s;}
+.osswitch button.on{background:var(--accent); color:#fff;}
+.osnote{font-size:13px; color:var(--sub); margin-top:8px;}
+body[data-os="win"] .os-mac{display:none;}
+body[data-os="mac"] .os-win{display:none;}
+
+/* ステップ */
+.step{position:relative; padding:0 0 8px 64px; margin-bottom:26px;}
+.step::before{content:""; position:absolute; left:21px; top:44px; bottom:-26px; width:2px; background:var(--line);}
+.step:last-child::before{display:none;}
+.step .num{position:absolute; left:0; top:0; width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; font-size:19px; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm);}
+.step h4{font-size:17.5px; margin:8px 0 8px;}
+.step p{color:var(--sub); font-size:15px; margin:6px 0 0;}
+.step p b{color:var(--ink);}
+
+/* ターミナル画面モック */
+.term{background:#11151c; border-radius:12px; overflow:hidden; margin:14px 0; box-shadow:var(--shadow-sm); border:1px solid #0a0d12;}
+.term .bar{display:flex; align-items:center; gap:7px; padding:10px 14px; background:#1d232d;}
+.term .bar i{width:12px; height:12px; border-radius:50%; display:block;}
+.term .bar .r{background:#ff5f57;} .term .bar .y{background:#febc2e;} .term .bar .g{background:#28c840;}
+.term .bar span{margin-left:8px; font-size:12px; color:#8b95a3; font-family:var(--mono);}
+.term .body{padding:16px 18px; font-family:var(--mono); font-size:13.5px; line-height:1.7; color:#d6deea; white-space:pre-wrap; word-break:break-all;}
+.term .body .prompt{color:#54d08a;}
+.term .body .cmd{color:#fff; font-weight:600;}
+.term .body .out{color:#8b95a3;}
+.copybtn{display:inline-flex; align-items:center; gap:6px; margin-top:-4px; font-size:12.5px; font-weight:700; color:var(--accent); background:var(--accent-soft); border:0; border-radius:var(--pill); padding:6px 14px; cursor:pointer;}
+.copybtn:hover{filter:brightness(.97);}
+
+/* ダイアログモック */
+.dialog{max-width:420px; margin:14px 0; background:#f5f5f7; border:1px solid #d6d6db; border-radius:12px; box-shadow:var(--shadow); overflow:hidden;}
+.dialog .dbody{padding:20px 22px; display:flex; gap:14px; align-items:flex-start;}
+.dialog .dico{font-size:34px; flex:0 0 auto;}
+.dialog .dtxt{font-size:13.5px; color:#1d1d1f; line-height:1.6;}
+.dialog .dtxt b{display:block; font-size:14.5px; margin-bottom:4px;}
+.dialog .dbtns{display:flex; justify-content:flex-end; gap:10px; padding:0 22px 18px;}
+.dialog .db{font-size:13px; font-weight:600; padding:7px 18px; border-radius:8px; border:1px solid #c5c5cb; background:#fff; color:#1d1d1f;}
+.dialog .db.go{background:var(--accent); color:#fff; border-color:var(--accent); box-shadow:0 2px 8px var(--accent-soft);}
+
+/* ブラウザ＋ダウンロードボタンモック */
+.browser{border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:14px 0; box-shadow:var(--shadow-sm); background:#fff;}
+.browser .bbar{display:flex; align-items:center; gap:8px; padding:10px 14px; background:#eef1f5; border-bottom:1px solid var(--line);}
+.browser .bbar i{width:11px; height:11px; border-radius:50%; background:#cfd6e0; display:block;}
+.browser .addr{flex:1; margin-left:8px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:5px 14px; font-size:12.5px; color:var(--sub); font-family:var(--mono);}
+.browser .bpage{padding:26px 22px; text-align:center;}
+.browser .bpage .ttl{font-size:15px; font-weight:700; margin-bottom:14px;}
+.dlbtn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; font-weight:700; font-size:15px; padding:13px 26px; border-radius:10px; box-shadow:0 6px 16px var(--accent-soft);}
+.dlbtn.alt{background:#24292f; box-shadow:none;}
+
+.note{font-size:13.5px; color:var(--sub); background:var(--bg-soft); border-radius:var(--radius-sm); padding:12px 16px; margin:14px 0;}
+.note.tip{border-left:4px solid var(--accent); background:var(--accent-soft);}
+.note.warn{border-left:4px solid var(--warn); background:color-mix(in srgb,var(--warn) 8%,var(--paper));}
+.ok-badge{display:inline-flex; align-items:center; gap:8px; background:color-mix(in srgb,var(--ok) 12%,#fff); border:1px solid color-mix(in srgb,var(--ok) 40%,var(--line)); color:var(--ink); border-radius:12px; padding:12px 18px; margin-top:14px; font-size:14px; font-weight:600;}
+.ok-badge .c{color:var(--ok); font-size:18px;}
+.footer-cta{background:linear-gradient(135deg,var(--accent-deep),var(--accent)); color:#fff; text-align:center; padding:54px 0; margin-top:20px;}
+.footer-cta h2,.footer-cta p{color:#fff;}
+.footer-cta p{opacity:.9; margin-top:12px; font-size:15.5px;}
+footer.doc{padding:26px 0 54px; text-align:center; font-size:12px; color:var(--sub); border-top:1px solid var(--line);}
+footer.doc a{font-weight:600;}
+@media print{
+  .toolbar{display:none;} body[data-os] .os-mac,body[data-os] .os-win{display:block !important;}
+  .osswitch{display:none;} .step::before{display:none;}
+  .term,.dialog,.browser,.step{break-inside:avoid;}
+}
+@media(max-width:560px){ .wrap{padding:0 16px;} .step{padding-left:54px;} .step .num{width:38px;height:38px;font-size:16px;} .step::before{left:18px;} }
+</style>
+</head>
+<body data-os="mac">
+
+<div class="toolbar">
+  <span class="t">🧰 セットアップ完全ガイド（git・VSCode・Claude Code）</span>
+  <a class="home" href="index.html">← 入口</a>
+  <button onclick="window.print()" class="primary">🖨 印刷 / PDF保存</button>
+</div>
+
+<!-- HERO -->
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Code編の山場を、確実に越えるために</span>
+  <h1>この通りにやれば、<br>準備は必ず終わります。</h1>
+  <p class="sub">Code編に入る前の「git」「VSCode」「Claude Code」の入れ方を、画面ごとに並べました。上から順に、画面のとおりに進めるだけでOKです。打つ文字は枠をそのままコピーできます。</p>
+  <div style="margin-top:24px;">
+    <div class="osswitch" role="group" aria-label="OS切替">
+      <button id="btnMac" class="on" onclick="setOS('mac')">🍎 Mac の人</button>
+      <button id="btnWin" onclick="setOS('win')">🪟 Windows の人</button>
+    </div>
+    <div class="osnote">自分のパソコンに合うほうを選んでください。表示が切り替わります。</div>
+  </div>
+</div></section>
+
+<!-- 全体の流れ -->
+<section class="section"><div class="wrap">
+  <div class="note tip">🗺 <b>全体の流れ</b>：① git を入れる → ② VSCode を入れる → ③ Claude Code を入れる。この3つが終われば、Code編の準備は完了です。所要は15〜30分くらい。詰まったら「まず自分のClaudeに聞く」でOKです。</div>
+</div></section>
+
+<!-- PART 1: git -->
+<section class="section section-soft"><div class="wrap">
+  <div class="partbar"><span class="ic">📦</span><div><div class="pn">PART 1</div><h2>git を入れる</h2></div></div>
+  <p class="lead" style="margin:10px 0 24px;">git は「作業を記録・保存しておく仕組み」です。これが入っていないと次に進めないので、最初に入れます。</p>
+
+  <!-- Mac版 git -->
+  <div class="os-mac">
+    <div class="step"><div class="num">1</div>
+      <h4>ターミナルを開く</h4>
+      <p>キーボードで <b>⌘（command）＋ スペース</b> を押し、出てきた検索に <b>ターミナル</b> と打って Enter。黒い画面（ターミナル）が開きます。</p>
+      <div class="note">💡 ターミナル＝パソコンに文字で命令する画面です。怖くありません。</div>
+    </div>
+    <div class="step"><div class="num">2</div>
+      <h4>この1行を貼り付けて Enter</h4>
+      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>ターミナル</span></div>
+        <div class="body"><span class="prompt">$ </span><span class="cmd">xcode-select --install</span></div></div>
+      <button class="copybtn" onclick="copyText('xcode-select --install',this)">📋 この文字をコピー</button>
+      <p>コピーして、ターミナルに貼り付け（<b>⌘＋V</b>）て Enter を押します。</p>
+    </div>
+    <div class="step"><div class="num">3</div>
+      <h4>出てきた画面で「インストール」をクリック</h4>
+      <div class="dialog">
+        <div class="dbody"><div class="dico">🛠</div><div class="dtxt"><b>"xcode-select" コマンドを実行するには、コマンドラインデベロッパツールが必要です。</b>今すぐインストールしますか？</div></div>
+        <div class="dbtns"><span class="db">あとで</span><span class="db go">インストール</span></div>
+      </div>
+      <p>このような確認が出たら <b>「インストール」</b> を押します。利用規約が出たら「同意」。あとは自動でダウンロードが進みます（数分かかります）。</p>
+    </div>
+    <div class="step"><div class="num">4</div>
+      <h4>入ったか確認する</h4>
+      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>ターミナル</span></div>
+        <div class="body"><span class="prompt">$ </span><span class="cmd">git --version</span>
+<span class="out">git version 2.39.5</span></div></div>
+      <button class="copybtn" onclick="copyText('git --version',this)">📋 この文字をコピー</button>
+      <p><b>git version …</b> と数字が出れば成功です。</p>
+      <div class="ok-badge"><span class="c">✓</span> git が入りました。PART 2 へ進みます。</div>
+    </div>
+  </div>
+
+  <!-- Windows版 git -->
+  <div class="os-win">
+    <div class="step"><div class="num">1</div>
+      <h4>ダウンロードページを開く</h4>
+      <p>ブラウザ（Edge や Chrome）で次のページを開きます。</p>
+      <div class="browser"><div class="bbar"><i></i><span class="addr">https://git-scm.com/download/win</span></div>
+        <div class="bpage"><div class="ttl">Git for Windows</div><span class="dlbtn alt">⬇ 64-bit Git for Windows Setup</span></div></div>
+      <button class="copybtn" onclick="copyText('https://git-scm.com/download/win',this)">📋 このURLをコピー</button>
+      <p><b>「64-bit Git for Windows Setup」</b> をクリックして、インストーラを保存します。</p>
+    </div>
+    <div class="step"><div class="num">2</div>
+      <h4>ダウンロードしたファイルを実行</h4>
+      <p>保存された <b>Git-…-64-bit.exe</b> をダブルクリックして開きます。「このアプリがデバイスに変更を…」と出たら <b>「はい」</b>。</p>
+    </div>
+    <div class="step"><div class="num">3</div>
+      <h4>基本そのまま「Next」を押していく</h4>
+      <div class="dialog">
+        <div class="dbody"><div class="dico">📦</div><div class="dtxt"><b>Git Setup</b>設定はすべて初めのまま（おすすめ設定）でOKです。迷わず進めて大丈夫。</div></div>
+        <div class="dbtns"><span class="db">Back</span><span class="db go">Next ▶</span></div>
+      </div>
+      <p>設定はいじらず <b>「Next」</b> を押し続け、最後に <b>「Install」</b>。終わったら <b>「Finish」</b>。</p>
+    </div>
+    <div class="step"><div class="num">4</div>
+      <h4>入ったか確認する</h4>
+      <p>スタートメニューで <b>PowerShell</b> を開き、次の1行を貼り付けて Enter。</p>
+      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>PowerShell</span></div>
+        <div class="body"><span class="prompt">PS&gt; </span><span class="cmd">git --version</span>
+<span class="out">git version 2.45.1.windows.1</span></div></div>
+      <button class="copybtn" onclick="copyText('git --version',this)">📋 この文字をコピー</button>
+      <p><b>git version …</b> と数字が出れば成功です。</p>
+      <div class="ok-badge"><span class="c">✓</span> git が入りました。PART 2 へ進みます。</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PART 2: VSCode -->
+<section class="section"><div class="wrap">
+  <div class="partbar"><span class="ic">🧩</span><div><div class="pn">PART 2</div><h2>VSCode を入れる</h2></div></div>
+  <p class="lead" style="margin:10px 0 24px;">VSCode は「コードを書いたり見たりするための画面の道具」です。Claude Code を動かす土台になります。Mac も Windows も入れ方はほぼ同じです。</p>
+
+  <div class="step"><div class="num">1</div>
+    <h4>ダウンロードページを開く</h4>
+    <div class="browser"><div class="bbar"><i></i><span class="addr">https://code.visualstudio.com/</span></div>
+      <div class="bpage"><div class="ttl">Visual Studio Code</div>
+        <span class="dlbtn os-mac">⬇ Download for macOS</span>
+        <span class="dlbtn os-win">⬇ Download for Windows</span>
+      </div></div>
+    <button class="copybtn" onclick="copyText('https://code.visualstudio.com/',this)">📋 このURLをコピー</button>
+    <p>青い <b><span class="os-mac">「Download for macOS」</span><span class="os-win">「Download for Windows」</span></b> ボタンをクリックします（自分のパソコン用が自動で選ばれます）。</p>
+  </div>
+  <div class="step os-mac"><div class="num">2</div>
+    <h4>解凍して、アプリケーションに入れる</h4>
+    <p>ダウンロードした <b>VSCode-darwin… .zip</b> をダブルクリックすると、<b>「Visual Studio Code」</b> が出てきます。それを <b>「アプリケーション」</b> フォルダへドラッグして入れます。</p>
+    <div class="note">💡 これで Launchpad や Spotlight から VSCode を開けるようになります。</div>
+  </div>
+  <div class="step os-win"><div class="num">2</div>
+    <h4>インストーラを実行する</h4>
+    <p>ダウンロードした <b>VSCodeUserSetup… .exe</b> をダブルクリック。<b>「同意する」</b>を選び、あとは <b>「次へ」→「インストール」</b> と進めます。</p>
+    <div class="note">💡 「デスクトップにアイコンを作る」にチェックを入れておくと、あとで開きやすいです。</div>
+  </div>
+  <div class="step"><div class="num">3</div>
+    <h4>VSCode を起動する</h4>
+    <p><span class="os-mac">アプリケーションから</span><span class="os-win">デスクトップかスタートメニューから</span> <b>Visual Studio Code</b> を開きます。青いアイコンの画面が出ればOK。</p>
+    <div class="ok-badge"><span class="c">✓</span> VSCode が入りました。PART 3 へ進みます。</div>
+  </div>
+</section></div>
+
+<!-- PART 3: Claude Code -->
+<section class="section section-soft"><div class="wrap">
+  <div class="partbar"><span class="ic">🤖</span><div><div class="pn">PART 3</div><h2>Claude Code を入れる</h2></div></div>
+  <p class="lead" style="margin:10px 0 24px;">いちばん大事なところです。むずかしい操作はありません。<b>Claude に「入れて」と頼むだけ</b>で、Claude が自分でインストールを進めてくれます。</p>
+
+  <div class="step"><div class="num">1</div>
+    <h4>アプリ版の Claude を開く</h4>
+    <p>パソコンに入れた <b>Claude のアプリ</b> を開き、画面を <b>Code</b> に切り替えます（午前に入れたアプリです）。</p>
+  </div>
+  <div class="step"><div class="num">2</div>
+    <h4>「Claude Code を入れて」と頼む</h4>
+    <p>入力らんに、次の言葉をそのまま打って送ります。</p>
+    <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Claude（Code）</span></div>
+      <div class="body"><span class="cmd">Claude Code を入れて</span></div></div>
+    <button class="copybtn" onclick="copyText('Claude Code を入れて',this)">📋 この文字をコピー</button>
+    <p>これが <b>ベース（本体）の入れ方</b> です。あとは Claude が必要なものを自分で用意してくれます。</p>
+  </div>
+  <div class="step"><div class="num">3</div>
+    <h4>確認が出たら「承認」で進める</h4>
+    <div class="dialog">
+      <div class="dbody"><div class="dico">🔐</div><div class="dtxt"><b>この操作を許可しますか？</b>Claude がインストールを進めようとしています。</div></div>
+      <div class="dbtns"><span class="db">拒否</span><span class="db go">承認</span></div>
+    </div>
+    <p>途中で確認が出たら <b>「承認」</b> を押して進めます。基本は承認でOKです。</p>
+  </div>
+  <div class="step"><div class="num">4</div>
+    <h4>使えるか確認する</h4>
+    <p>ターミナル<span class="os-win">（PowerShell）</span>で次の1行を打って、起動すればOKです。</p>
+    <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span><span class="os-mac">ターミナル</span><span class="os-win">PowerShell</span></span></div>
+      <div class="body"><span class="prompt"><span class="os-mac">$ </span><span class="os-win">PS&gt; </span></span><span class="cmd">claude</span>
+<span class="out">Welcome to Claude Code</span></div></div>
+    <button class="copybtn" onclick="copyText('claude',this)">📋 この文字をコピー</button>
+    <div class="ok-badge"><span class="c">✓</span> これで全部の準備が完了です。お疲れさまでした。</div>
+  </div>
+
+  <div class="note tip" style="margin-top:24px;">🎬 <b>もっと詳しく見たいとき</b>：実際の画面で見たい場合は <b>Code Vol.1 の動画</b> をどうぞ。このガイドと同じ流れを、画面そのままで確認できます。</div>
+  <div class="note warn">⚠ <b>つまずいたら</b>：①メモに書く → ②自分の Claude に「○○でエラーが出た。どうすればいい？」と聞く（英語の画面は写真に撮って見せる）→ ③それでも解けなければ担当者に手を挙げる。</div>
+</div></section>
+
+<!-- 締め -->
+<section class="footer-cta"><div class="wrap">
+  <h2>準備、おつかれさまでした 🎉</h2>
+  <p>git・VSCode・Claude Code がそろえば、あとは作るだけ。Code編をたのしんでください。</p>
+</div></section>
+
+<footer class="doc">
+  セットアップ完全ガイド（git・VSCode・Claude Code） ・ ホリエモンAI学校 ・ 関係者限定　／　<a href="index.html">入口にもどる</a>　・　<a href="1day.html">1日版</a>　・　<a href="2day.html">2日版</a>
+</footer>
+
+<script>
+function setOS(os){
+  document.body.dataset.os = os;
+  document.getElementById('btnMac').classList.toggle('on', os==='mac');
+  document.getElementById('btnWin').classList.toggle('on', os==='win');
+  try{ localStorage.setItem('setup-os', os); }catch(e){}
+}
+(function(){ try{ var s=localStorage.getItem('setup-os'); if(s) setOS(s); }catch(e){} })();
+function copyText(t, btn){
+  navigator.clipboard.writeText(t).then(function(){
+    var old=btn.textContent; btn.textContent='✓ コピーしました';
+    setTimeout(function(){ btn.textContent=old; }, 1500);
+  }).catch(function(){});
+}
+</script>
+
+</body>
+</html>
