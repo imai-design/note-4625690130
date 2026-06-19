@@ -136,7 +136,7 @@ footer.doc a{font-weight:600;}
 
 <!-- 全体の流れ -->
 <section class="section"><div class="wrap">
-  <div class="note tip">🗺 <b>全体の流れ</b>：① Claude のアプリ（Cowork）を入れる → ② git → ③ VSCode → ④ Claude Code。午前のアプリ導入から午後の準備まで、ここで全部できます。詰まったら「まず自分のClaudeに聞く」（アプリが入る前はスマホのClaudeか担当者）でOKです。</div>
+  <div class="note tip">🗺 <b>全体の流れ</b>：① Claude のアプリ（Cowork）を入れる → ② git → ③ VS Code（Claudeに頼む）→ ④ VS Code の拡張機能で Claude Code を使えるようにする。午前のアプリ導入から午後の準備まで、ここで全部できます。詰まったら「まず自分のClaudeに聞く」（アプリが入る前はスマホのClaudeか担当者）でOKです。</div>
 </div></section>
 
 <!-- PART 0: Cowork（Claudeアプリ） -->
@@ -259,8 +259,8 @@ footer.doc a{font-weight:600;}
   <p class="lead" style="margin:10px 0 24px;">VSCode は「コードを書く・見るための画面の道具」。Claude Code を動かす土台です。<b>いちばん簡単なのは、Claude に頼むこと</b>です。</p>
 
   <div class="step"><div class="num">1</div>
-    <h4>Claude に「VS Code を入れて」と頼む</h4>
-    <p>午前に入れた Claude のアプリを <b>Code</b> に切り替え、次の言葉をそのまま打って送ります。</p>
+    <h4>Claude アプリの Claude Code に頼む</h4>
+    <p>午前に入れた Claude アプリの <b>Claude Code</b>（画面を Code に切り替え）で、次の言葉をそのまま打って送ります。</p>
     <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Claude（Code）</span></div>
       <div class="body"><span class="cmd">VS Code をダウンロードして入れて</span></div></div>
     <button class="copybtn" onclick="copyText('VS Code をダウンロードして入れて',this)">📋 この文字をコピー</button>
@@ -279,36 +279,27 @@ footer.doc a{font-weight:600;}
 
 <!-- PART 3: Claude Code -->
 <section class="section section-soft"><div class="wrap">
-  <div class="partbar"><span class="ic">🤖</span><div><div class="pn">PART 3</div><h2>Claude Code を入れる</h2></div></div>
-  <p class="lead" style="margin:10px 0 24px;">いちばん大事なところです。むずかしい操作はありません。<b>Claude に「入れて」と頼むだけ</b>で、Claude が自分でインストールを進めてくれます。</p>
+  <div class="partbar"><span class="ic">🤖</span><div><div class="pn">PART 3</div><h2>VS Code で Claude Code を使えるようにする</h2></div></div>
+  <p class="lead" style="margin:10px 0 24px;">最後の仕上げです。VS Code に Claude の拡張機能を入れて、VS Code の画面から Claude Code を使えるようにします。</p>
 
   <div class="step"><div class="num">1</div>
-    <h4>アプリ版の Claude を開く</h4>
-    <p>パソコンに入れた <b>Claude のアプリ</b> を開き、画面を <b>Code</b> に切り替えます（午前に入れたアプリです）。</p>
+    <h4>VS Code の拡張機能で「Claude」を入れる</h4>
+    <p>VS Code の左側の <b>拡張機能</b>（四角が4つのアイコン）を開き、検索らんに <b>Claude</b> と入力。出てきた「Claude」を <b>インストール</b> します。</p>
+    <div class="browser"><div class="bbar"><i></i><span class="addr">VS Code ＞ 拡張機能（Extensions）</span></div>
+      <div class="bpage" style="text-align:left;"><div class="ttl">🔍 Claude</div><div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-top:6px;background:var(--paper);"><span><b>Claude</b><br><span style="font-size:12px;color:var(--sub);">Anthropic 公式の拡張機能</span></span><span class="dlbtn" style="padding:8px 18px;">Install</span></div></div></div>
+    <button class="copybtn" onclick="copyText('Claude',this)">📋 「Claude」をコピー</button>
   </div>
   <div class="step"><div class="num">2</div>
-    <h4>「Claude Code を入れて」と頼む</h4>
-    <p>入力らんに、次の言葉をそのまま打って送ります。</p>
-    <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Claude（Code）</span></div>
-      <div class="body"><span class="cmd">Claude Code を入れて</span></div></div>
-    <button class="copybtn" onclick="copyText('Claude Code を入れて',this)">📋 この文字をコピー</button>
-    <p>これが <b>ベース（本体）の入れ方</b> です。あとは Claude が必要なものを自分で用意してくれます。</p>
+    <h4>アカウントを連携する</h4>
+    <p>入れた拡張機能から <b>「サインイン」</b> を押し、ふだん使っている <b>Claude のアカウントで連携</b> します。ブラウザで確認が出たら「許可」して、VS Code に戻ります。</p>
+    <div class="dialog">
+      <div class="dbody"><div class="dico">🔗</div><div class="dtxt"><b>Claude にサインインしますか？</b>VS Code と Claude アカウントを連携します。</div></div>
+      <div class="dbtns"><span class="db">あとで</span><span class="db go">サインイン</span></div>
+    </div>
   </div>
   <div class="step"><div class="num">3</div>
-    <h4>確認が出たら「承認」で進める</h4>
-    <div class="dialog">
-      <div class="dbody"><div class="dico">🔐</div><div class="dtxt"><b>この操作を許可しますか？</b>Claude がインストールを進めようとしています。</div></div>
-      <div class="dbtns"><span class="db">拒否</span><span class="db go">承認</span></div>
-    </div>
-    <p>途中で確認が出たら <b>「承認」</b> を押して進めます。基本は承認でOKです。</p>
-  </div>
-  <div class="step"><div class="num">4</div>
-    <h4>使えるか確認する</h4>
-    <p>ターミナル<span class="os-win">（PowerShell）</span>で次の1行を打って、起動すればOKです。</p>
-    <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span><span class="os-mac">ターミナル</span><span class="os-win">PowerShell</span></span></div>
-      <div class="body"><span class="prompt"><span class="os-mac">$ </span><span class="os-win">PS&gt; </span></span><span class="cmd">claude</span>
-<span class="out">Welcome to Claude Code</span></div></div>
-    <button class="copybtn" onclick="copyText('claude',this)">📋 この文字をコピー</button>
+    <h4>VS Code から Claude Code が使えるようになる</h4>
+    <p>連携できると、VS Code の画面の中で <b>Claude Code</b> が使えるようになります。これで全部の準備は完了です。</p>
     <div class="ok-badge"><span class="c">✓</span> これで全部の準備が完了です。お疲れさまでした。</div>
   </div>
 
