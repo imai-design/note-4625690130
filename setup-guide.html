@@ -189,74 +189,28 @@ footer.doc a{font-weight:600;}
 <!-- PART 1: git -->
 <section class="section section-soft"><div class="wrap">
   <div class="partbar"><span class="ic">📦</span><div><div class="pn">PART 1</div><h2>git を入れる</h2></div></div>
-  <p class="lead" style="margin:10px 0 24px;">git は「作業を記録・保存しておく仕組み」です。これが入っていないと次に進めないので、最初に入れます。</p>
-  <div class="note tip">📥 <b>公式のダウンロードページ</b>：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com/downloads</a>（Mac版＝<a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">こちら</a> ／ Windows版＝<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">こちら</a>）。下の手順でうまくいかないときは、ここから直接入れられます。</div>
+  <p class="lead" style="margin:10px 0 24px;">git は「作業を記録・保存しておく仕組み」。<b>ターミナルは使いません</b>。午前に入れた Claude（Cowork）に頼むだけで入ります。</p>
 
-  <!-- Mac版 git -->
-  <div class="os-mac">
-    <div class="step"><div class="num">1</div>
-      <h4>ターミナルを開く</h4>
-      <p>キーボードで <b>⌘（command）＋ スペース</b> を押し、出てきた検索に <b>ターミナル</b> と打って Enter。黒い画面（ターミナル）が開きます。</p>
-      <div class="note">💡 ターミナル＝パソコンに文字で命令する画面です。怖くありません。</div>
-    </div>
-    <div class="step"><div class="num">2</div>
-      <h4>この1行を貼り付けて Enter</h4>
-      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>ターミナル</span></div>
-        <div class="body"><span class="prompt">$ </span><span class="cmd">xcode-select --install</span></div></div>
-      <button class="copybtn" onclick="copyText('xcode-select --install',this)">📋 この文字をコピー</button>
-      <p>コピーして、ターミナルに貼り付け（<b>⌘＋V</b>）て Enter を押します。</p>
-    </div>
-    <div class="step"><div class="num">3</div>
-      <h4>出てきた画面で「インストール」をクリック</h4>
-      <div class="dialog">
-        <div class="dbody"><div class="dico">🛠</div><div class="dtxt"><b>"xcode-select" コマンドを実行するには、コマンドラインデベロッパツールが必要です。</b>今すぐインストールしますか？</div></div>
-        <div class="dbtns"><span class="db">あとで</span><span class="db go">インストール</span></div>
-      </div>
-      <p>このような確認が出たら <b>「インストール」</b> を押します。利用規約が出たら「同意」。あとは自動でダウンロードが進みます（数分かかります）。</p>
-    </div>
-    <div class="step"><div class="num">4</div>
-      <h4>入ったか確認する</h4>
-      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>ターミナル</span></div>
-        <div class="body"><span class="prompt">$ </span><span class="cmd">git --version</span>
-<span class="out">git version 2.39.5</span></div></div>
-      <button class="copybtn" onclick="copyText('git --version',this)">📋 この文字をコピー</button>
-      <p><b>git version …</b> と数字が出れば成功です。</p>
-      <div class="ok-badge"><span class="c">✓</span> git が入りました。PART 2 へ進みます。</div>
+  <div class="step"><div class="num">1</div>
+    <h4>Claude（Cowork）に「git を入れて」と頼む</h4>
+    <p>午前に入れた <b>Claude（Cowork）</b> に、次の言葉をそのまま打って送ります。</p>
+    <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>Claude（Cowork）</span></div>
+      <div class="body"><span class="cmd">git を入れて</span></div></div>
+    <button class="copybtn" onclick="copyText('git を入れて',this)">📋 この文字をコピー</button>
+  </div>
+  <div class="step"><div class="num">2</div>
+    <h4>確認が出たら「承認」で進める</h4>
+    <p>Claude が画面を操作して git を入れてくれます。途中で確認が出たら <b>「承認」</b> を押します。</p>
+    <div class="dialog">
+      <div class="dbody"><div class="dico">🔐</div><div class="dtxt"><b>この操作を許可しますか？</b>Claude が git のインストールを進めようとしています。</div></div>
+      <div class="dbtns"><span class="db">拒否</span><span class="db go">承認</span></div>
     </div>
   </div>
-
-  <!-- Windows版 git -->
-  <div class="os-win">
-    <div class="step"><div class="num">1</div>
-      <h4>ダウンロードページを開く</h4>
-      <p>ブラウザ（Edge や Chrome）で次のページを開きます。</p>
-      <div class="browser"><div class="bbar"><i></i><span class="addr">https://git-scm.com/download/win</span></div>
-        <div class="bpage"><div class="ttl">Git for Windows</div><span class="dlbtn alt">⬇ 64-bit Git for Windows Setup</span></div></div>
-      <button class="copybtn" onclick="copyText('https://git-scm.com/download/win',this)">📋 このURLをコピー</button>
-      <p><b>「64-bit Git for Windows Setup」</b> をクリックして、インストーラを保存します。</p>
-    </div>
-    <div class="step"><div class="num">2</div>
-      <h4>ダウンロードしたファイルを実行</h4>
-      <p>保存された <b>Git-…-64-bit.exe</b> をダブルクリックして開きます。「このアプリがデバイスに変更を…」と出たら <b>「はい」</b>。</p>
-    </div>
-    <div class="step"><div class="num">3</div>
-      <h4>基本そのまま「Next」を押していく</h4>
-      <div class="dialog">
-        <div class="dbody"><div class="dico">📦</div><div class="dtxt"><b>Git Setup</b>設定はすべて初めのまま（おすすめ設定）でOKです。迷わず進めて大丈夫。</div></div>
-        <div class="dbtns"><span class="db">Back</span><span class="db go">Next ▶</span></div>
-      </div>
-      <p>設定はいじらず <b>「Next」</b> を押し続け、最後に <b>「Install」</b>。終わったら <b>「Finish」</b>。</p>
-    </div>
-    <div class="step"><div class="num">4</div>
-      <h4>入ったか確認する</h4>
-      <p>スタートメニューで <b>PowerShell</b> を開き、次の1行を貼り付けて Enter。</p>
-      <div class="term"><div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>PowerShell</span></div>
-        <div class="body"><span class="prompt">PS&gt; </span><span class="cmd">git --version</span>
-<span class="out">git version 2.45.1.windows.1</span></div></div>
-      <button class="copybtn" onclick="copyText('git --version',this)">📋 この文字をコピー</button>
-      <p><b>git version …</b> と数字が出れば成功です。</p>
-      <div class="ok-badge"><span class="c">✓</span> git が入りました。PART 2 へ進みます。</div>
-    </div>
+  <div class="step"><div class="num">3</div>
+    <h4>入ったらOK</h4>
+    <p>「入りました」と Claude が教えてくれたら完了です。</p>
+    <div class="ok-badge"><span class="c">✓</span> git が入りました。PART 2 へ進みます。</div>
+    <div class="note tip">💡 自分で入れたいときは、公式ページ <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com/downloads</a>（<a href="https://git-scm.com/download/mac" target="_blank" rel="noopener">Mac</a> ／ <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Windows</a>）からも入れられます。</div>
   </div>
 </div></section>
 
